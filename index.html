@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto: Raio-X da Juventude</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <header class="bg-blue-900 text-white py-10 px-6 text-center shadow-lg">
+        <h1 class="text-4xl font-bold mb-2">🎯 Raio-X da Juventude</h1>
+        <p class="text-lg text-blue-200">Análise de Condições de Vida e Métricas para Atuação Social e Educacional</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-10">
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-600">
+                <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Frequência Média Escolar</h3>
+                <p class="text-3xl font-extrabold text-gray-800 mt-2">84.8%</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-amber-500">
+                <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Acesso Limitado à Internet</h3>
+                <p class="text-3xl font-extrabold text-gray-800 mt-2">50.0%</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-red-500">
+                <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Risco de Evasão Escolar</h3>
+                <p class="text-3xl font-extrabold text-gray-800 mt-2">18.3%</p>
+            </div>
+        </section>
+
+        <section class="bg-white p-8 rounded-xl shadow-md mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">📊 Visualização dos Indicadores</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-center text-gray-700">Distribuição do Acesso à Internet</h3>
+                    <canvas id="chartInternet"></canvas>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-center text-gray-700">Classificação de Risco de Evasão</h3>
+                    <canvas id="chartEvasao"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">💡 Pilares Estratégicos de Intervenção</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-blue-50 p-6 rounded-xl border border-blue-200">
+                    <div class="text-blue-700 text-2xl font-bold mb-2">01</div>
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">Inclusão Digital</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Criação de polos comunitários de estudos com internet de alta velocidade e equipamentos para estudantes vulneráveis.</p>
+                </div>
+                <div class="bg-emerald-50 p-6 rounded-xl border border-emerald-200">
+                    <div class="text-emerald-700 text-2xl font-bold mb-2">02</div>
+                    <h3 class="text-xl font-bold text-emerald-900 mb-2">Apoio Socioemocional</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Implementação de acompanhamento psicossocial e mentorias para redução do abandono escolar.</p>
+                </div>
+                <div class="bg-purple-50 p-6 rounded-xl border border-purple-200">
+                    <div class="text-purple-700 text-2xl font-bold mb-2">03</div>
+                    <h3 class="text-xl font-bold text-purple-900 mb-2">Ensino do Futuro</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Capacitação técnica em programação e análise de dados integrada à grade do ensino médio.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white text-center py-6">
+        <p class="text-sm text-gray-400">Projeto Raio-X da Juventude &bull; Desenvolvido com Python & GitHub Pages</p>
+    </footer>
+
+    <script>
+        const ctx1 = document.getElementById('chartInternet').getContext('2d');
+        new Chart(ctx1, {
+            type: 'doughnut',
+            data: {
+                labels: ['Banda Larga', 'Apenas 4G/5G', 'Sem Acesso Regular'],
+                datasets: [{
+                    data: [50, 40, 10],
+                    backgroundColor: ['#2563EB', '#F59E0B', '#EF4444']
+                }]
+            }
+        });
+
+        const ctx2 = document.getElementById('chartEvasao').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Baixo Risco', 'Alto Risco'],
+                datasets: [{
+                    label: 'Percentual de Jovens (%)',
+                    data: [81.7, 18.3],
+                    backgroundColor: ['#10B981', '#EF4444']
+                }]
+            },
+            options: { scales: { y: { beginAtZero: true, max: 100 } } }
+        });
+    </script>
+</body>
+</html>
